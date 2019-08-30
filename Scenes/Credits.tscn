@@ -1,0 +1,99 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scripts/Credits.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/vector-dark-stage-background-with-blue-rays-of-spotlight-and-falling-sparkling.jpg" type="Texture" id=2]
+[ext_resource path="res://Sprites/Carlos/Jump/adventurer-jump-00.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Carlos/Jump/adventurer-jump-01.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Carlos/Jump/adventurer-jump-02.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Carlos/Jump/adventurer-jump-03.png" type="Texture" id=6]
+[ext_resource path="res://Fonts/MenuFont_42.tres" type="DynamicFont" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Label
+
+onready var pv = get_node(\"/root/Global\")
+
+func _process(delta):
+	set_text(str(pv.score));
+	pass"
+
+[node name="Credits" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="shaikh-zhafri-spotlight-pixelart" type="Sprite" parent="."]
+position = Vector2( 256.181, 144.725 )
+scale = Vector2( 0.8, 0.6 )
+texture = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.5, 0.48 )
+limit_left = 0
+limit_top = 0
+limit_bottom = 0
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 257.213, 213.893 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+frame = 2
+playing = true
+
+[node name="YouDidIt" type="Label" parent="."]
+margin_left = 71.2976
+margin_top = 14.44
+margin_right = 448.298
+margin_bottom = 103.44
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.188235, 0.666667, 0.792157, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "        YOU DID IT
+NOW YOU ARE VERY RICH"
+
+[node name="FinalScore" type="Label" parent="."]
+margin_left = 148.01
+margin_top = 112.813
+margin_right = 340.01
+margin_bottom = 155.813
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.188235, 0.666667, 0.792157, 1 )
+text = "final score"
+
+[node name="Score" type="Label" parent="."]
+margin_left = 263.195
+margin_top = 103.415
+margin_right = 282.195
+margin_bottom = 146.415
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.188235, 0.666667, 0.792157, 1 )
+text = "0"
+script = SubResource( 2 )
+
+[node name="Button" type="Button" parent="."]
+editor/display_folded = true
+margin_left = 416.0
+margin_top = 257.0
+margin_right = 504.0
+margin_bottom = 277.0
+flat = true
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Label" type="Label" parent="Button"]
+margin_right = 213.0
+margin_bottom = 43.0
+rect_scale = Vector2( 0.4, 0.4 )
+custom_fonts/font = ExtResource( 7 )
+custom_colors/font_color = Color( 0.188235, 0.666667, 0.792157, 1 )
+text = "Back to menu"
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

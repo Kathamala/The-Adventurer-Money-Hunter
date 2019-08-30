@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Menu/Background.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Menu/oie_transparent.png" type="Texture" id=3]
+[ext_resource path="res://Fonts/MenuFont_42.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Sprites/Carlos/Fall/adventurer-fall-00.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Carlos/Fall/adventurer-fall-01.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/FadeIn.tscn" type="PackedScene" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -1.0
+margin_top = -1.0
+margin_right = -1.0
+margin_bottom = -1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 575.125, 205.536 )
+scale = Vector2( 1.41082, 1 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Menu" type="VBoxContainer" parent="."]
+margin_left = 116.0
+margin_top = 13.0
+margin_right = 900.0
+margin_bottom = 737.0
+
+[node name="Logo" type="TextureRect" parent="Menu"]
+margin_right = 784.0
+margin_bottom = 359.0
+texture = ExtResource( 3 )
+stretch_mode = 4
+
+[node name="NewGame" type="Button" parent="."]
+margin_left = 433.0
+margin_top = 419.0
+margin_right = 598.0
+margin_bottom = 462.0
+flat = true
+
+[node name="Label" type="Label" parent="NewGame"]
+anchor_bottom = 1.0
+margin_left = -1.55994
+margin_top = 2.51251
+margin_right = 163.44
+margin_bottom = 2.51251
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 0.552941, 0.360784, 0.133333, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 3
+custom_constants/shadow_offset_y = 5
+text = "New Game"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 509.453, 201.046 )
+scale = Vector2( 1.56, 1.62162 )
+frames = SubResource( 1 )
+frame = 1
+playing = true
+
+[node name="FadeIn" parent="." instance=ExtResource( 7 )]
+visible = false
+color = Color( 0, 0, 0, 1 )
+[connection signal="pressed" from="NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="fade_finished" from="FadeIn" to="." method="_on_FadeIn_fade_finished"]

@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Fonts/MenuFont_42.tres" type="DynamicFont" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Label
+
+onready var pv = get_node(\"/root/Global\")
+
+func _process(delta):
+	set_text(\"Score: \" + str(pv.score));
+	pass"
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Label
+
+onready var pv = get_node(\"/root/Global\")
+
+func _process(delta):
+	set_text(\"Lives: \" + str(pv.lives));
+	pass
+"
+
+[node name="HUD" type="ParallaxBackground"]
+layer = 0
+
+[node name="Layer11" type="ParallaxLayer" parent="."]
+position = Vector2( -3, 15.1475 )
+motion_scale = Vector2( 0, 1 )
+motion_mirroring = Vector2( 500, 0 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="ScoreLabel" type="Label" parent="Layer11"]
+margin_left = 665.777
+margin_top = 4.12516
+margin_right = 805.777
+margin_bottom = 47.1252
+rect_scale = Vector2( 0.5, 0.5 )
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "score 0"
+align = 2
+script = SubResource( 1 )
+
+[node name="LivesLabel" type="Label" parent="Layer11"]
+margin_left = 671.777
+margin_top = 29.66
+margin_right = 811.777
+margin_bottom = 72.66
+rect_scale = Vector2( 0.5, 0.5 )
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Lives 0"
+script = SubResource( 2 )
