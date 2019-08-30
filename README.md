@@ -3,5 +3,4 @@
 CONTROLS:
 Left Arrow - Move Left/
 Right Arrow - Move Right/
-Up Arrow - Jump/
-Space Bar - Boost/
+Up Arrow - Jump
